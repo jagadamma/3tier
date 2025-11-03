@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  DB_HOST: abi.cvgeoooom8vt.ap-south-1.rds.amazonaws.com
+  DB_NAME: abi
+  DB_PORT: "3306"
