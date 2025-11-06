@@ -20,13 +20,20 @@ spec:
         env:
         - name: REACT_APP_BACKEND_URL
           value: "http://backend-service:4000"
+        resources:
+          requests:
+            cpu: "100m"       # Minimum guaranteed CPU (0.1 core)
+            memory: "128Mi"   # Minimum guaranteed memory
+          limits:
+            cpu: "500m"       # Max CPU per pod (0.5 core)
+            memory: "256Mi"   # Max memory per pod
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: frontend
   ports:
