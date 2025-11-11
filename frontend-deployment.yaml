@@ -22,11 +22,20 @@ spec:
           value: "http://backend-service:4000"
         resources:
           requests:
-            cpu: "100m"       # Minimum guaranteed CPU (0.1 core)
-            memory: "128Mi"   # Minimum guaranteed memory
+            cpu: "100m"
+            memory: "128Mi"
           limits:
-            cpu: "500m"       # Max CPU per pod (0.5 core)
-            memory: "256Mi"   # Max memory per pod
+            cpu: "500m"
+            memory: "256Mi"
+
+        volumeMounts:
+        - name: frontend-storage
+          mountPath: "/data"
+
+      volumes:
+      - name: frontend-storage
+        persistentVolumeClaim:
+          claimName: my-ebs-claim
 ---
 apiVersion: v1
 kind: Service
