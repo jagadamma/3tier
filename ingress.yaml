@@ -15,7 +15,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /abi
             pathType: Prefix
             backend:
               service:
