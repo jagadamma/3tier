@@ -31,6 +31,6 @@ jobs:
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }}
 
-      - name: Deploy using kubectl
-        run: kubectl apply -R -f . --filename '*.yaml' --filename '*.yml'
+      - name: Deploy using kubectl            
+        run: find . -type f \( -name "*.yaml" -o -name "*.yml" \) ! -path "./.github/*" -exec kubectl apply -f {} \;
 
