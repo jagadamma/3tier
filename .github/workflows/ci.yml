@@ -1,9 +1,10 @@
 name: Node.js Package
+
 on:
-  push:   
+  push:
     branches:
       - master
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,16 +13,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install    
+      - run: npm install
 
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }}
+
       - name: Deploy using kubectl
-        run: kubectl apply -f ./*
+        run: kubectl apply -f ./
