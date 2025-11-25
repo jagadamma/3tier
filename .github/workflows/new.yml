@@ -32,4 +32,5 @@ jobs:
         run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }}
 
       - name: Deploy using kubectl
-        run: kubectl apply -f ./
+        run: kubectl apply -R -f . --filename '*.yaml' --filename '*.yml'
+
