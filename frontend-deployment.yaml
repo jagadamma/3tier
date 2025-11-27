@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: jagadamma/myimg:latest
+        image: jagadamma/myimg:9
         ports:
         - containerPort: 80
         env:

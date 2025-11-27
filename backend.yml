@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jagadamma/myimg:latest
+        image: jagadamma/myimg:9
         ports:
         - containerPort: 4000
         env:
