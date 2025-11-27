@@ -9,5 +9,5 @@ resources:
   - frontend-deployment.yaml
   - ingress.yaml
   - hpa.yaml
- # - gp3-storageclass.yaml
+  - gp3-storageclass.yaml
   - pvc.yml
