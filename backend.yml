@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jagadamma/client:v1
+        image: jagadamma/nginx:v1
         ports:
         - containerPort: 4000
         env:
